@@ -5,17 +5,7 @@ function MainTodo () {
     const [todo, setTodo] = useState(JSON.parse(localStorage.getItem('todos')) || [
         {
             id: 1,
-            text: 'first todo',
-            state: ''
-        },
-        {
-            id: 2,
-            text: 'second todo',
-            state: 'done'
-        },
-        {
-            id: 3,
-            text: 'third todo',
+            text: 'Попробуйте ввести новое задание',
             state: ''
         }
     ])
