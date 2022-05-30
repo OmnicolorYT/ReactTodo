@@ -2,7 +2,7 @@ import React, { Component} from 'react'
 import TodoInput from "../TodoInput/TodoInput";
 import TodoList from "../TodoList/TodoList";
 import Footer from "../Footer/Footer";
-import './MainTodo.scss'
+import './MainTodo.module.scss'
 
 class MainTodo extends Component{
     render() {

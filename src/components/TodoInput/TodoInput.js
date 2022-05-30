@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from "redux";
 import {addTodo, toggleAll, handleInputChange} from "../../actions";
-import './TodoInput.scss'
+import './TodoInput.module.scss'
 
 class TodoInput extends Component {
     render() {

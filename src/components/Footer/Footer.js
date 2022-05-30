@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {removeTodo, switchSort, clearDone} from "../../actions";
 import {bindActionCreators} from "redux";
-import './Footer.scss'
+import './Footer.module.scss'
 
 class Footer extends Component {
 

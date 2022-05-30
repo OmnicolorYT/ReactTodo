@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import TodoItem from '../TodoItem/TodoItem'
 import {bindActionCreators} from "redux";
-import './TodoList.scss'
+import './TodoList.module.scss'
 
 class TodoList extends Component {
     render() {

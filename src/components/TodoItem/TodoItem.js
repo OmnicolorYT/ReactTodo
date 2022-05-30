@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from "redux";
 import {removeTodo, editTodo, changeComplete, handleInputChange, edit} from "../../actions";
-import './TodoItem.scss'
+import './TodoItem.module.scss'
 
 class TodoItem extends Component {
 
