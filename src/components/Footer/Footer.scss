@@ -1,0 +1,52 @@
+.footer {
+  display: flex;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+}
+
+.footer p {
+  margin: 0;
+}
+
+.footer a {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  box-sizing: border-box;
+  padding: 2px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 14px;
+}
+
+.footer > a:hover {
+  text-decoration: underline;
+}
+
+.footer .buttons a {
+  box-sizing: border-box;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 5px;
+  padding: 2px;
+}
+
+.footer .buttons a:not(.checked) {
+  border: 1px solid white;
+}
+
+a.checked {
+  border: 1px solid black;
+}
+
+.footer .buttons a:not(.checked):hover {
+  border: 1px solid grey;
+}

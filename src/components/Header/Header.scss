@@ -1,0 +1,21 @@
+header {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1 {
+  width: 100%;
+  text-align: center;
+  font-size: 70px;
+  color: rgba(175, 47, 47, 0.15);
+  background: url("sources/to-do-list.png") no-repeat center right;
+  background-size: 50px 50px;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+}
+
+h1:hover {
+  background-image: url("sources/to-do-list-hover.png");
+}

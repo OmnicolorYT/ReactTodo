@@ -1,12 +1,9 @@
 import React, {Component} from "react"
 import Header from './components/Header/Header'
 import MainTodo from "./components/MainTodo/MainTodo";
+import './App.scss'
 
 class App extends Component{
-    constructor(props) {
-        super(props);
-    }
-
     render () {
         return (
             <div className="App">

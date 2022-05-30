@@ -1,0 +1,19 @@
+.todo {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #ffffff;
+  box-shadow: 0 0 15px 5px lightgrey;
+  padding: 10px;
+  cursor: text;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.todo:hover {
+  box-shadow: 0 0 25px 10px lightgrey;
+}
