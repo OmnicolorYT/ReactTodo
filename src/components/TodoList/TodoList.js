@@ -1,23 +1,21 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
+import React from 'react'
+import {useSelector} from 'react-redux'
 import TodoItem from '../TodoItem/TodoItem'
-import {bindActionCreators} from "redux";
-import './TodoList.module.scss'
+import styles from './TodoList.module.scss'
 
-class TodoList extends Component {
-    render() {
-        return (
-        <ul className="todolist">
-            {
-                this.props.todos.map ((todo) => {
-                    return(
-                        <TodoItem todo={todo} />
-                    )
-                })
-            }
-        </ul>
+function TodoList() {
+    const todos = useSelector(state => getVisibleTodos(state.todos.todoList, state.ui.sort))
+    const todosList = todos.map ((todo) => {
+        return(
+            <TodoItem todo={todo} key={todo.id}/>
         )
-    }
+    })
+
+    return (
+        <ul className={styles.todoList}>
+            {todosList}
+        </ul>
+    )
 }
 
 function getVisibleTodos (todos, filter) {
@@ -32,14 +30,5 @@ function getVisibleTodos (todos, filter) {
     }
 }
 
-function mapStateToProps (state) {
-    return {
-        todos: getVisibleTodos(state.todos.todoList, state.ui.sort),
-    }
-}
 
-function matchDispatchToProps(dispatch) {
-    return bindActionCreators({getVisibleTodos: getVisibleTodos}, dispatch)
-}
-
-export default connect(mapStateToProps, matchDispatchToProps)(TodoList)
+export default TodoList

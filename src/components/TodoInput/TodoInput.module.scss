@@ -1,10 +1,10 @@
-.toggle-all {
+.toggleAll {
   width: 50px;
   height: 50px;
   margin: 0;
   -webkit-appearance: none;
   border: none;
-  background: url("./sources/ckeck_all.png") no-repeat center center;
+  background: url("../../../public/Todoinput_images/ckeck_all.png") no-repeat center center;
   background-size: 40px 40px;
   cursor: pointer;
   -moz-transition: all 0.1s ease;
@@ -17,11 +17,11 @@
   width: 100%;
 }
 
-.toggle-all:hover {
+.toggleAll:hover {
   background-size: 45px 45px;
 }
 
-.new-todo {
+.newTodo {
   height: 50px;
   width: 85%;
   margin-left: auto;
@@ -31,11 +31,11 @@
   color: lightgrey;
 }
 
-.new-todo::-webkit-input-placeholder {
+.newTodo::-webkit-input-placeholder {
   color: lightgrey;
 }
 
-.new-todo:focus {
+.newTodo:focus {
   outline: none;
   color: black;
 }

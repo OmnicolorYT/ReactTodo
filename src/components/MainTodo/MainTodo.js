@@ -1,19 +1,17 @@
-import React, { Component} from 'react'
+import React from 'react'
 import TodoInput from "../TodoInput/TodoInput";
 import TodoList from "../TodoList/TodoList";
 import Footer from "../Footer/Footer";
-import './MainTodo.module.scss'
+import styles from './MainTodo.module.scss'
 
-class MainTodo extends Component{
-    render() {
-        return (
-            <section className='todo'>
-                <TodoInput/>
-                <TodoList/>
-                <Footer/>
-            </section>
-        )
-    }
+function MainTodo() {
+    return (
+        <section className={styles.todo}>
+            <TodoInput/>
+            <TodoList/>
+            <Footer/>
+        </section>
+    )
 }
 
 export default MainTodo

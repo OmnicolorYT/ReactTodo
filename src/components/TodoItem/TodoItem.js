@@ -1,63 +1,70 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {bindActionCreators} from "redux";
-import {removeTodo, editTodo, changeComplete, handleInputChange, edit} from "../../actions";
-import './TodoItem.module.scss'
+import React from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import {removeTodo, editTodo, changeComplete, edit} from "../../actions";
+import styles from './TodoItem.module.scss'
+import PropTypes from 'prop-types';
 
-class TodoItem extends Component {
+function TodoItem(props) {
+    const todo = props.todo
+    const ui = useSelector(state => state.ui)
+    const todos = useSelector(state => state.todos.todoList)
+    const dispatch = useDispatch()
 
-    render() {
-        let state = ""
-        for (let item of this.props.todos) {
-            if (item.id === this.props.todo.id) {
+    function onEnterKey(e) {
+        if (e.keyCode === 13)
+        {
+            dispatch(editTodo(ui.editId, ui.editText))
+            dispatch(edit('',''))
+        }
+    }
+
+    function renderBlock() {
+        if (todo.id === ui.editId) {
+            return(<input
+                className={styles.edit}
+                type="text"
+                value={ui.editText}
+                onChange={(e) => dispatch(edit(todo.id, e.target.value))}
+                onBlur={() => dispatch(edit('', ''))}
+                onKeyDown={(e) => onEnterKey(e)}
+                autoFocus={true}
+            />)
+        }
+        else {
+            return(
+                <div>
+                    <p onClick={() => dispatch(edit(todo.id, todo.text))}>{todo.text}</p>
+                    <button className={styles.destroy} onClick={() => dispatch(removeTodo(todo.id))}/>
+                </div>
+            )
+        }
+    }
+
+    function getStateStyle() {
+        for (let item of todos) {
+            if (item.id === todo.id) {
                 if (item.complete) {
-                    state = "done"
+                    return(" " + styles.done)
                 }
                 else {
-                    state = ""
+                    return("")
                 }
             }
         }
-        return(
-            <li key={this.props.todo.id}>
-                <div className={'item {state}'.replace('{state}', state)}>
-                    <input className="toggle" type="checkbox" onClick={() => this.props.changeComplete(this.props.todo.id)}/>
-                    {this.props.todo.id === this.props.ui.editId ?
-                        <input
-                            className={"edit"}
-                            type="text"
-                            value={this.props.ui.editText}
-                            onChange={(e) => this.props.edit(this.props.todo.id, e.target.value)}
-                            onBlur={() => this.props.edit('', '')}
-                            onKeyDown={(e) => {
-                                if (e.keyCode === 13)
-                                {
-                                    this.props.editTodo(this.props.ui.editId, this.props.ui.editText);
-                                    this.props.edit('','')
-                                }
-                            }}
-                            autoFocus={true}
-                        /> :
-                        <div>
-                            <p onClick={() => this.props.edit(this.props.todo.id, this.props.todo.text)}>{this.props.todo.text}</p>
-                            <button className={"destroy"} onClick={() => this.props.removeTodo(this.props.todo.id)}/>
-                        </div>
-                    }
-                </div>
-            </li>
-        )
     }
+
+    return(
+        <li>
+            <div className={styles.item + getStateStyle()}>
+                <input className={styles.toggle} type="checkbox" onClick={() => dispatch(changeComplete(todo.id))}/>
+                {renderBlock()}
+            </div>
+        </li>
+    )
 }
 
-function mapStateToProps (state) {
-    return {
-        todos: state.todos.todoList,
-        ui: state.ui
-    }
+TodoItem.propTypes = {
+    todo: PropTypes.object
 }
 
-function matchDispatchToProps(dispatch) {
-    return bindActionCreators({removeTodo: removeTodo, editTodo: editTodo, changeComplete: changeComplete, handleInputChange: handleInputChange, edit: edit}, dispatch)
-}
-
-export default connect(mapStateToProps, matchDispatchToProps)(TodoItem)
+export default TodoItem

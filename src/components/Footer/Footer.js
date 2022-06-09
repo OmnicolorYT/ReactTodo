@@ -1,56 +1,59 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {removeTodo, switchSort, clearDone} from "../../actions";
-import {bindActionCreators} from "redux";
-import './Footer.module.scss'
+import React, {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {switchSort, clearDone} from "../../actions";
+import styles from './Footer.module.scss'
+import classNames from "classnames/bind";
+import PropTypes from 'prop-types';
 
-class Footer extends Component {
+function Footer() {
+    const todos = useSelector(state => state.todos.todoList)
+    const sort = useSelector(state => state.ui.sort)
+    const dispatch = useDispatch()
+    const cx = classNames.bind(styles)
+    const [count, setCount] = useState(0)
+    const [str, setStr] = useState('')
 
-
-
-    render () {
-        let count = 0;
-        if (this.props.todos !== null) {
-            for (let item of this.props.todos) {
+    useEffect(() => {
+        let num = 0
+        if (todos !== null) {
+            for (let item of todos) {
                 if (!item.complete) {
-                    count += 1;
+                    num += 1
                 }
             }
         }
+        setCount(num)
+    }, [todos])
 
-        let str;
+    useEffect(() => {
         if (count % 10 === 1 && count % 100 !== 11) {
-            str = " задание осталось"
+            setStr(" задание осталось")
         }
         else if (count % 10 >= 2 && count % 10 <= 4 && (count % 100 < 12 || count % 100 > 14)) {
-            str = " задания осталось"
+            setStr(" задания осталось")
         }
         else {
-            str = " заданий осталось"
+            setStr(" заданий осталось")
         }
-        return (
-            <div className="footer">
-                <p className="counter">{count + str}</p>
-                <div className="buttons">
-                    {this.props.ui.sort === 'ALL' ? <a className="all checked" onClick={() => this.props.switchSort('ALL')}>Все</a> : <a className="all" onClick={() => this.props.switchSort('ALL')}>Все</a>}
-                    {this.props.ui.sort === 'ACTIVE' ? <a className="active checked" onClick={() => this.props.switchSort('ACTIVE')}>Активные</a> : <a className="active" onClick={() => this.props.switchSort('ACTIVE')}>Активные</a>}
-                    {this.props.ui.sort === 'DONE' ? <a className="complete checked" onClick={() => this.props.switchSort('DONE')}>Выполненные</a> : <a className="complete" onClick={() => this.props.switchSort('DONE')}>Выполненные</a>}
-                </div>
-                <a className="clear" onClick={() => this.props.clearDone()}>Очистить выполненные</a>
+    }, [count])
+
+
+    return (
+        <div className={styles.footer}>
+            <p className="counter">{count + str}</p>
+            <div className={styles.buttons}>
+                <a className={cx({checked: sort === 'ALL'})} onClick={() => dispatch(switchSort('ALL'))} href='#'>Все</a>
+                <a className={cx({checked: sort === 'ACTIVE'})} onClick={() => dispatch(switchSort('ACTIVE'))} href='#'>Активные</a>
+                <a className={cx({checked: sort === 'DONE'})} onClick={() => dispatch(switchSort('DONE'))} href='#'>Выполненные</a>
             </div>
-        )
-    }
+            <a onClick={() => dispatch(clearDone())}>Очистить выполненные</a>
+        </div>
+    )
 }
 
-function mapStateToProps (state) {
-    return {
-        todos: state.todos.todoList,
-        ui: state.ui
-    }
+Footer.propTypes = {
+    todos: PropTypes.number,
+    sort: PropTypes.string
 }
 
-function matchDispatchToProps(dispatch) {
-    return bindActionCreators({removeTodo: removeTodo, switchSort: switchSort, clearDone: clearDone}, dispatch)
-}
-
-export default connect(mapStateToProps, matchDispatchToProps)(Footer)
+export default Footer
