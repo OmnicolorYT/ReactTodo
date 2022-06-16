@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 function TodoItem(props) {
     const todo = props.todo
     const ui = useSelector(state => state.ui)
-    const todos = useSelector(state => state.todos.todoList)
     const dispatch = useDispatch()
 
     function onEnterKey(e) {
@@ -41,15 +40,11 @@ function TodoItem(props) {
     }
 
     function getStateStyle() {
-        for (let item of todos) {
-            if (item.id === todo.id) {
-                if (item.complete) {
-                    return(" " + styles.done)
-                }
-                else {
-                    return("")
-                }
-            }
+        if (todo.complete) {
+            return(" " + styles.done)
+        }
+        else {
+            return("")
         }
     }
 
@@ -64,7 +59,11 @@ function TodoItem(props) {
 }
 
 TodoItem.propTypes = {
-    todo: PropTypes.object
+    todo: PropTypes.shape({
+        id: PropTypes.number,
+        text: PropTypes.string,
+        complete: PropTypes.bool
+    })
 }
 
 export default TodoItem
