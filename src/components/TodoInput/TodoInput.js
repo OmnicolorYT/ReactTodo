@@ -8,7 +8,8 @@ function TodoInput() {
     const dispatch = useDispatch()
 
     function addKeyDown(ev) {
-        if (ev.keyCode === 13) {
+        const ENTER_KEY_CODE = 13
+        if (ev.keyCode === ENTER_KEY_CODE) {
             dispatch(addTodo())
         }
     }

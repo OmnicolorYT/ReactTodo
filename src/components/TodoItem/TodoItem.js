@@ -3,21 +3,24 @@ import {useDispatch, useSelector} from 'react-redux'
 import {removeTodo, editTodo, changeComplete, edit} from "../../actions";
 import styles from './TodoItem.module.scss'
 import PropTypes from 'prop-types';
+import classNames from "classnames/bind";
 
 function TodoItem(props) {
     const todo = props.todo
     const ui = useSelector(state => state.ui)
     const dispatch = useDispatch()
+    const cx = classNames.bind(styles)
 
     function onEnterKey(e) {
-        if (e.keyCode === 13)
+        const ENTER_KEY_CODE = 13
+        if (e.keyCode === ENTER_KEY_CODE)
         {
             dispatch(editTodo(ui.editId, ui.editText))
             dispatch(edit('',''))
         }
     }
 
-    function renderBlock() {
+    function itemTextField() {
         if (todo.id === ui.editId) {
             return(<input
                 className={styles.edit}
@@ -26,7 +29,7 @@ function TodoItem(props) {
                 onChange={(e) => dispatch(edit(todo.id, e.target.value))}
                 onBlur={() => dispatch(edit('', ''))}
                 onKeyDown={(e) => onEnterKey(e)}
-                autoFocus={true}
+                autoFocus
             />)
         }
         else {
@@ -39,20 +42,11 @@ function TodoItem(props) {
         }
     }
 
-    function getStateStyle() {
-        if (todo.complete) {
-            return(" " + styles.done)
-        }
-        else {
-            return("")
-        }
-    }
-
     return(
         <li>
-            <div className={styles.item + getStateStyle()}>
+            <div className={styles.item + " " + cx({done: todo.complete})}>
                 <input className={styles.toggle} type="checkbox" onClick={() => dispatch(changeComplete(todo.id))}/>
-                {renderBlock()}
+                {itemTextField()}
             </div>
         </li>
     )

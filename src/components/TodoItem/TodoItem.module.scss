@@ -17,12 +17,17 @@ li {
   display: flex;
 }
 
-.item:hover .destroy:not(.hidden) {
-  display: block;
+.item p {
+  width: 370px;
+  padding-right: 50px;
 }
 
 .item:hover p {
-  width: 370px;
+  padding-right: 0;
+}
+
+.item:hover .destroy:not(.hidden) {
+  display: block;
 }
 
 .item.done .toggle {

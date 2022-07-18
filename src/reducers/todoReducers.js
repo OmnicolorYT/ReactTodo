@@ -22,15 +22,16 @@ export default function contactReducers(state = initialState.todos, action) {
                 }
         }
         case "REMOVE_TODO":
-            let newTodoList = [...state.todoList].filter(item => item.id !== action.payload.id)
+            const newTodoList = [...state.todoList].filter(item => item.id !== action.payload.id)
             return {
                 ...state,
                 todoList: newTodoList
             }
         case "EDIT_TODO":
-            let editTodo = [...state.todoList].filter(item => {
-                if (item.id === action.payload.id) {
-                    item.text = action.payload.text
+            const {id, text} = action.payload
+            const editTodo = [...state.todoList].filter(item => {
+                if (item.id === id) {
+                    item.text = text
                 }
                 return item
             })
@@ -38,7 +39,7 @@ export default function contactReducers(state = initialState.todos, action) {
                 ...state, todoList: editTodo
             }
         case "CHANGE_COMPLETE":
-            let completeTodo = [...state.todoList].filter(item => {
+            const completeTodo = [...state.todoList].filter(item => {
                 if (item.id === action.payload.id) {
                     item.complete = !item.complete
                 }
@@ -61,7 +62,7 @@ export default function contactReducers(state = initialState.todos, action) {
                     complete = true
                 }
             }
-            let toggleTodo = [...state.todoList].filter(item => {
+            const toggleTodo = [...state.todoList].filter(item => {
                 item.complete = complete
                 return item
             })
@@ -70,7 +71,7 @@ export default function contactReducers(state = initialState.todos, action) {
                 todoList: toggleTodo
             }
         case "CLEAR_DONE":
-            let clearDone = [...state.todoList].filter(item => !item.complete)
+            const clearDone = [...state.todoList].filter(item => !item.complete)
             return {
                 ...state,
                 todoList: clearDone
