@@ -1,3 +1,5 @@
+$desktop: 540px;
+
 li {
   width: 100%;
   padding: 0;
@@ -14,20 +16,8 @@ li {
 }
 
 .item div {
+  width: 100%;
   display: flex;
-}
-
-.item p {
-  width: 370px;
-  padding-right: 50px;
-}
-
-.item:hover p {
-  padding-right: 0;
-}
-
-.item:hover .destroy:not(.hidden) {
-  display: block;
 }
 
 .item.done .toggle {
@@ -40,26 +30,16 @@ li {
 }
 
 .toggle {
-  width: 50px;
-  height: 50px;
-  margin: 0 10px 0 0;
   -webkit-appearance: none;
   border: none;
   background: url("../../../public/Todoitem_images/active.png") no-repeat center center;
-  background-size: 40px 40px;
   cursor: pointer;
   -moz-transition: all 0.1s ease;
   -o-transition: all 0.1s ease;
   -webkit-transition: all 0.1s ease;
 }
 
-.toggle:hover {
-  background-size: 45px 45px;
-}
-
 li p {
-  width: 420px;
-  font-size: 32px;
   margin-top: auto;
   margin-bottom: auto;
   word-wrap: break-word;
@@ -67,14 +47,10 @@ li p {
 }
 
 .destroy {
-  display: none;
-  width: 50px;
-  height: 50px;
   margin: 0;
   border: none;
   padding: 0;
   background: url("../../../public/Todoitem_images/delete.png") no-repeat center center;
-  background-size: 40px 40px;
   cursor: pointer;
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
@@ -86,7 +62,84 @@ li p {
 }
 
 .edit {
-  width: 90%;
   color: black;
-  font-size: 32px;
+}
+
+@media(min-width: $desktop) {
+  .item p {
+    width: 370px;
+    padding-right: 50px;
+  }
+
+  .toggle {
+    width: 50px;
+    height: 50px;
+    margin: 0 10px 0 0;
+    background-size: 40px 40px;
+  }
+
+  .toggle:hover {
+    background-size: 45px 45px;
+  }
+
+  li p {
+    width: 420px;
+    font-size: 32px;
+  }
+
+  .destroy {
+    display: none;
+    width: 50px;
+    height: 50px;
+    background-size: 40px 40px;
+  }
+
+  .item:hover .destroy:not(.hidden) {
+    display: block;
+  }
+
+  .item:hover p {
+    padding-right: 0;
+  }
+
+  .edit {
+    width: 90%;
+    font-size: 32px;
+  }
+}
+
+@media(max-width: $desktop) {
+  .item div {
+    width: 62vw;
+  }
+
+  .item p {
+    width: 52vw;
+  }
+
+  .toggle {
+    width: 10vw;
+    height: 10vw;
+    margin: 0 2vw 0 0;
+    background-size: 8vw 8vw;
+  }
+
+  .toggle:hover {
+    background-size: 9vw 9vw;
+  }
+
+  li p {
+    font-size: 5vw;
+  }
+
+  .destroy {
+    width: 10vw;
+    height: 10vw;
+    background-size: 8vw 8vw;
+  }
+
+  .edit {
+    width: 60vw;
+    font-size: 5vw;
+  }
 }

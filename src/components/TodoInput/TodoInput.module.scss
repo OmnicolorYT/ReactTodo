@@ -1,11 +1,10 @@
+$desktop: 540px;
+
 .toggleAll {
-  width: 50px;
-  height: 50px;
   margin: 0;
   -webkit-appearance: none;
   border: none;
   background: url("../../../public/Todoinput_images/ckeck_all.png") no-repeat center center;
-  background-size: 40px 40px;
   cursor: pointer;
   -moz-transition: all 0.1s ease;
   -o-transition: all 0.1s ease;
@@ -17,16 +16,9 @@
   width: 100%;
 }
 
-.toggleAll:hover {
-  background-size: 45px 45px;
-}
-
 .newTodo {
-  height: 50px;
-  width: 85%;
   margin-left: auto;
   border: none;
-  font-size: 28px;
   font-style: italic;
   color: lightgrey;
 }
@@ -38,4 +30,40 @@
 .newTodo:focus {
   outline: none;
   color: black;
+}
+
+@media(min-width: $desktop) {
+  .toggleAll {
+    width: 50px;
+    height: 50px;
+    background-size: 40px 40px;
+  }
+
+  .toggleAll:hover {
+    background-size: 45px 45px;
+  }
+
+  .newTodo {
+    height: 50px;
+    width: 85%;
+    font-size: 28px;
+  }
+}
+
+@media(max-width: $desktop) {
+  .toggleAll {
+    width: 10vw;
+    height: 10vw;
+    background-size: 8vw 8vw;
+  }
+
+  .toggleAll:hover {
+    background-size: 9vw 9vw;
+  }
+
+  .newTodo {
+    height: 10vw;
+    width: 65vw;
+    font-size: 5vw;
+  }
 }

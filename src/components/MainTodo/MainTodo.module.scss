@@ -1,3 +1,5 @@
+$desktop: 540px;
+
 .todo {
   width: 100%;
   margin-right: auto;
@@ -16,4 +18,10 @@
 
 .todo:hover {
   box-shadow: 0 0 25px 10px lightgrey;
+}
+
+@media(min-width: $desktop) {
+}
+
+@media(max-width: $desktop) {
 }

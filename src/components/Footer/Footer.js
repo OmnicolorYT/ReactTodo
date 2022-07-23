@@ -20,7 +20,7 @@ function Footer() {
 
     return (
         <div className={styles.footer}>
-            <p className="counter">{pluralizedCountStr}</p>
+            <p className={styles.counter}>{pluralizedCountStr}</p>
             <div className={styles.buttons}>
                 <a className={cx({checked: sort === 'ALL'})} onClick={() => dispatch(switchSort('ALL'))} href='#'>Все</a>
                 <a className={cx({checked: sort === 'ACTIVE'})} onClick={() => dispatch(switchSort('ACTIVE'))} href='#'>Активные</a>

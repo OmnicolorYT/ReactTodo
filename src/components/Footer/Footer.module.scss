@@ -1,11 +1,9 @@
+$desktop: 540px;
+
 .footer {
-  display: flex;
-  padding-left: 10px;
-  padding-right: 10px;
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  font-size: 10px;
 }
 
 .footer p {
@@ -21,10 +19,8 @@
 }
 
 .buttons {
-  display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 14px;
 }
 
 .footer > a:hover {
@@ -33,10 +29,6 @@
 
 .footer .buttons a {
   box-sizing: border-box;
-  margin-left: 5px;
-  margin-right: 5px;
-  border-radius: 5px;
-  padding: 2px;
 }
 
 .footer .buttons a:not(.checked) {
@@ -49,4 +41,58 @@ a.checked {
 
 .footer .buttons a:not(.checked):hover {
   border: 1px solid grey;
+}
+
+@media(min-width: $desktop) {
+  .footer {
+    display: flex;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 10px;
+  }
+
+  .footer .buttons a {
+    margin-left: 5px;
+    margin-right: 5px;
+    border-radius: 5px;
+    padding: 2px;
+  }
+
+  .buttons {
+    display: flex;
+    height: 14px;
+  }
+}
+
+@media(max-width: $desktop) {
+  .footer {
+    display: grid;
+    grid-template-areas:
+      "counter clear-all"
+      "buttons buttons";
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 3vw;
+    grid-template-columns: 50% 50%;
+    grid-auto-rows: auto;
+    row-gap: 1vw;
+  }
+
+  .footer .buttons a {
+    border-radius: 5px;
+    padding: 2px;
+    text-align: center;
+  }
+
+  .footer .counter {
+    grid-area: counter;
+  }
+
+  .buttons {
+    grid-area: buttons;
+    display: grid;
+    height: 14px;
+    grid-template-columns: 25% 25% 40%;
+    column-gap: 3%;
+  }
 }

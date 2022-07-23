@@ -1,13 +1,20 @@
+$desktop: 540px;
+
 body {
   padding: 0;
-  width: 500px;
   margin: 0 auto 20px;
   font-family: sans-serif;
   background-color: #efefef;
 }
 
-@media(max-width: 540px) {
+@media(min-width: $desktop) {
   body {
-    width: 100%;
+    width: 500px;
+  }
+}
+
+@media(max-width: $desktop) {
+  body {
+    width: 80%;
   }
 }
