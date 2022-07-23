@@ -22,11 +22,11 @@ function Footer() {
         <div className={styles.footer}>
             <p className={styles.counter}>{pluralizedCountStr}</p>
             <div className={styles.buttons}>
-                <a className={cx({checked: sort === 'ALL'})} onClick={() => dispatch(switchSort('ALL'))} href='#'>Все</a>
-                <a className={cx({checked: sort === 'ACTIVE'})} onClick={() => dispatch(switchSort('ACTIVE'))} href='#'>Активные</a>
-                <a className={cx({checked: sort === 'DONE'})} onClick={() => dispatch(switchSort('DONE'))} href='#'>Выполненные</a>
+                <p className={styles.sort_button + " " + cx({checked: sort === 'ALL'})} onClick={() => dispatch(switchSort('ALL'))}>Все</p>
+                <p className={styles.sort_button + " " + cx({checked: sort === 'ACTIVE'})} onClick={() => dispatch(switchSort('ACTIVE'))}>Активные</p>
+                <p className={styles.sort_button + " " + cx({checked: sort === 'DONE'})} onClick={() => dispatch(switchSort('DONE'))}>Выполненные</p>
             </div>
-            <a onClick={() => dispatch(clearDone())}>Очистить выполненные</a>
+            <p className={styles.clear_all_button} onClick={() => dispatch(clearDone())}>Очистить выполненные</p>
         </div>
     )
 }

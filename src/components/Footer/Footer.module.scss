@@ -6,16 +6,23 @@ $desktop: 540px;
   align-items: center;
 }
 
-.footer p {
+.counter, .clear_all_button, .sort_button {
   margin: 0;
 }
 
-.footer a {
+.clear_all_button, .sort_button {
   text-decoration: none;
   color: black;
   cursor: pointer;
-  box-sizing: border-box;
   padding: 2px;
+}
+
+.sort_button {
+  box-sizing: content-box;
+}
+
+.clear_all_button {
+  box-sizing: border-box;
 }
 
 .buttons {
@@ -23,23 +30,19 @@ $desktop: 540px;
   align-items: center;
 }
 
-.footer > a:hover {
+.clear_all_button:hover {
   text-decoration: underline;
 }
 
-.footer .buttons a {
-  box-sizing: border-box;
-}
-
-.footer .buttons a:not(.checked) {
+.sort_button:not(.checked) {
   border: 1px solid white;
 }
 
-a.checked {
+.sort_button.checked {
   border: 1px solid black;
 }
 
-.footer .buttons a:not(.checked):hover {
+.sort_button:not(.checked):hover {
   border: 1px solid grey;
 }
 
@@ -51,7 +54,7 @@ a.checked {
     font-size: 10px;
   }
 
-  .footer .buttons a {
+  .sort_button {
     margin-left: 5px;
     margin-right: 5px;
     border-radius: 5px;
@@ -78,13 +81,13 @@ a.checked {
     row-gap: 1vw;
   }
 
-  .footer .buttons a {
-    border-radius: 5px;
+  .sort_button {
+    border-radius: 1vw;
     padding: 2px;
     text-align: center;
   }
 
-  .footer .counter {
+  .counter {
     grid-area: counter;
   }
 
